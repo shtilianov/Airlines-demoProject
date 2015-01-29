@@ -1,0 +1,8 @@
+{
+  "ProjectName": "AirlinesTests",
+  "ProjectGuid": "18c17a15-134e-4559-9439-d47ab8d7e143",
+  "projectVersion": 1,
+  "ProjectTypeGuids": "{6319b66f-8dff-4073-91be-3cd48a2fdeb3}",
+  "FrameworkVersion": "1.0",
+  "Framework": "MobileTesting"
+}
