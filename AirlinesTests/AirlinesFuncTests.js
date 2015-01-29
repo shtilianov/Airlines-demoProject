@@ -17,7 +17,7 @@ spec(function(){
     var title = "Hi Jaxon!";
     var airmiles = "12345678";
     var totalmiles = "55555";
-    var priority = "diamond";
+    var priority = "Diamond";
 
     // Define your steps here. Use 'ios', 'android' and  'wp8' fields to specify OS specific actions
     // and 'default' fileds to specify common action.
@@ -66,6 +66,7 @@ spec(function(){
                 },
         "Verify title":{
             'default':[
+                // Verify that the Main page title is correct
                 web.getTextContent(queries.title, function(response){
                     assert(response).equals(title);
                 })
@@ -73,6 +74,7 @@ spec(function(){
         },
         "Verify flight summary":{
             'default':[
+                // Assert that the values in the account flight summary are correct
                 web.getTextContent(queries.airmiles, function(response){
                     assert(response).equals(airmiles);
                 }),
