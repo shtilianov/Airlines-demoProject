@@ -73,13 +73,13 @@ spec(function(){
         },
         "Verify flight summary":{
             'default':[
-                web.getValue(queries.airmiles, function(response){
+                web.getTextContent(queries.airmiles, function(response){
                     assert(response).equals(airmiles);
                 }),
-                web.getValue(queries.totalmiles, function(response){
+                web.getTextContent(queries.totalmiles, function(response){
                     assert(response).equals(totalmiles);
                 }),
-                web.getValue(queries.priority, function(response){
+                web.getTextContent(queries.priority, function(response){
                     assert(response).equals(priority);
                 })
             ]
