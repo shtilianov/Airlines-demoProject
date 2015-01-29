@@ -4,12 +4,20 @@ spec(function(){
         username:  {'tagName': 'input', 'index' : 0},
         password:  {'tagName': 'input', 'index' : 1}, 
         submitBtn: {'tagName': 'input', 'index' : 2},
-        shit: {'id':'flightStatusView'},
+        title: {'tagName': 'h1'},
+        airmiles: {'id':'ffnum'},
+        totalmiles: {'id':'miles'},
+        priority:{'id':'currentStatus'},
+        mytripsButton:{'id':'myTripsView'},
     };
 
     // Specify variables used by various steps here.
     var username = "jaxon.daniels@gmail.com";
-    var password = "password";
+    var password = "P2ssw0rd";
+    var title = "Hi Jaxon!";
+    var airmiles = "12345678";
+    var totalmiles = "55555";
+    var priority = "diamond";
 
     // Define your steps here. Use 'ios', 'android' and  'wp8' fields to specify OS specific actions
     // and 'default' fileds to specify common action.
@@ -47,12 +55,38 @@ spec(function(){
             'default': [
                 // Tap Login button
                 web.click(queries.submitBtn),
-                web.wait(10000)
+                web.wait(10000),
+                
             ]
         },
-        "shit":{
+                "Take screenshot after you login":{
+                'default':[
+                    web.screenshot()
+            ]
+                },
+        "Verify title":{
             'default':[
-                web.click(queries.shit)
+                web.getTextContent(queries.title, function(response){
+                    assert(response).equals(title);
+                })
+            ]
+        },
+        "Verify flight summary":{
+            'default':[
+                web.getValue(queries.airmiles, function(response){
+                    assert(response).equals(airmiles);
+                }),
+                web.getValue(queries.totalmiles, function(response){
+                    assert(response).equals(totalmiles);
+                }),
+                web.getValue(queries.priority, function(response){
+                    assert(response).equals(priority);
+                })
+            ]
+        },
+        "Verify the list of options":{
+            'deafult':[
+                web.click(queries.mytripsButton)
             ]
         }
     };
@@ -67,8 +101,15 @@ spec(function(){
             step("Enter Username");
             step("Enter Password");
             step("Tap login");
-            
+            step("Take screenshot after you login");
         });
-        // 
+        test("Verify main view UI", function(){
+            step("launch application");
+            step("Tap login");
+            step("Verify title");
+            step("Verify flight summary");
+            step("Verify the list of options");
+            });
+        // Point to the step repository object
     }, stepRepository);
 });

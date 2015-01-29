@@ -35,6 +35,7 @@
   "iOSBackgroundMode": [],
   "FrameworkVersion": "3.5.0",
   "CorePlugins": [
+    "com.telerik.mobiletesting",
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.statusbar"
   ],
@@ -49,5 +50,10 @@
   "Author": "",
   "Description": "airlines sample app",
   "Framework": "Cordova",
-  "projectVersion": "1"
+  "projectVersion": "1",
+  "CordovaPluginVariables": {
+    "com.telerik.mobiletesting": {
+      "IOS_APP_URL": "airlines"
+    }
+  }
 }
