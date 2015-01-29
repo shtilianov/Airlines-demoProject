@@ -31,7 +31,7 @@ spec(function(){
           "Enter Username": {
              'default': [
                  // Enter username
-                 web.setText(queries.username, username)
+                 web.setTextContent(queries.username, username)
                         
             ]
                 },
@@ -39,7 +39,7 @@ spec(function(){
         "Enter Password": {
             'default':[
                 // Enter password
-                web.setText(queries.password, password)
+                web.setTextContent(queries.password, password)
             ]
         },
                 
@@ -66,7 +66,7 @@ spec(function(){
             step("launch application");
             step("Enter Username");
             step("Enter Password");
-            step("tap login");
+            step("Tap login");
             
         });
         // 
