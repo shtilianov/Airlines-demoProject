@@ -14,7 +14,7 @@ spec(function(){
         bagtrack:{'id':'bagTrackView'},
         flightprogress:{'id':'programProgressView'},
         settings:{'id':'settingsView'},
-        bostontrip:{'id':'1111'},
+        bostontrip:{'id':'myTripsListView'},
         checkin:{'tagName':'a', 'index':1},
         passenger:{'id':'boardingpass-passenger'},
     };
