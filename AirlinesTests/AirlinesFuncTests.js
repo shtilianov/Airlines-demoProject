@@ -88,7 +88,7 @@ spec(function(){
             ]
         },
         "Verify the list of options":{
-            'deafult':[
+            'default':[
                 web.click(queries.mytripsButton)
             ]
         },
