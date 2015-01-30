@@ -137,9 +137,8 @@ spec(function(){
         },
         "Go back to home screen": {
             'default': [
-                web.click(queries.backbutton),
-                web.wait(5000),
                 web.click(queries.backbutton)
+                
             ]
         }
     };
@@ -170,7 +169,6 @@ spec(function(){
             step("Open My Trips");
             step("Open SEA to BOS trip");
             step("Check In");
-            step("Boarding pass is OK")
             step("Go back to home screen");
         });
         // Point to the step repository object
