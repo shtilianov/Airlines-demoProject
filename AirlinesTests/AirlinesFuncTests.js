@@ -8,7 +8,7 @@ spec(function(){
         airmiles: {'id':'ffnum'},
         totalmiles: {'id':'miles'},
         priority:{'id':'currentStatus'},
-        mytripsButton:{'id':'myTripsView'},
+        mytripsButton:{'tagName':'a', 'index':0},
         backbutton:{'id':'backButton'},
         flightstatus:{'id':'flightStatusView'},
         bagtrack:{'id':'bagTrackView'},
@@ -161,7 +161,7 @@ spec(function(){
             step("Tap login");
             step("Verify title");
             step("Verify flight summary");
-            step("Verify list items");
+            
             
             });
         test("Open my trips and verify contents", function() {
