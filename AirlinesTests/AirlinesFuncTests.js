@@ -9,6 +9,7 @@ spec(function(){
         totalmiles: {'id':'miles'},
         priority:{'id':'currentStatus'},
         mytripsButton:{'id':'myTripsView'},
+        backbutton:{'id':'backButton'},
     };
 
     // Specify variables used by various steps here.
@@ -90,6 +91,11 @@ spec(function(){
             'deafult':[
                 web.click(queries.mytripsButton)
             ]
+        },
+        "Go back":{
+            'default':[
+                web.click(queries.backbutton)
+            ]
         }
     };
 
@@ -111,6 +117,7 @@ spec(function(){
             step("Verify title");
             step("Verify flight summary");
             step("Verify the list of options");
+            step("Go back");
             });
         // Point to the step repository object
     }, stepRepository);
