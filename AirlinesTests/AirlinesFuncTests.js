@@ -10,6 +10,13 @@ spec(function(){
         priority:{'id':'currentStatus'},
         mytripsButton:{'id':'myTripsView'},
         backbutton:{'id':'backButton'},
+        flightstatus:{'id':'flightStatusView'},
+        bagtrack:{'id':'bagTrackView'},
+        flightprogress:{'id':'programProgressView'},
+        settings:{'id':'settingsView'},
+        bostontrip:{'id':'1111'},
+        checkin:{'tagName':'a', 'index':1},
+        passenger:{'id':'boardingpass-passenger'},
     };
 
     // Specify variables used by various steps here.
@@ -87,13 +94,51 @@ spec(function(){
                 })
             ]
         },
-        "Verify the list of options":{
+        "Open My Trips":{
             'default':[
                 web.click(queries.mytripsButton)
             ]
         },
-        "Go back":{
+        "Verify list items":{
             'default':[
+                web.getValue(queries.mytripsButton, function(response){
+                    assert(response).equals("MyTrips");
+                }),
+                web.getValue(queries.flightstatus, function(response){
+                    assert(response).equals("Flight Status");
+                }),
+                 web.getValue(queries.bagtrack, function(response){
+                    assert(response).equals("Track your bag");
+                }),
+                web.getValue(queries.flightprogress, function(response){
+                    assert(response).equals("Mileage program progress");
+                }),
+                web.getValue(queries.settings, function(response){
+                    assert(response).equals("Settings");
+                })
+            ]
+        },
+        "Open SEA to BOS trip":{
+            'default':[
+                web.click(queries.bostontrip)
+            ]
+        },
+        "Check In":{
+            'default':[
+                web.click(queries.checkin)
+            ]
+        },
+        "Boarding pass is OK": {
+            'default':[
+                 web.getTextContent(queries.passenger, function(response){
+                    assert(response).equals("Jaxon Daniels");
+                })
+            ]
+        },
+        "Go back to home screen": {
+            'default': [
+                web.click(queries.backbutton),
+                web.wait(5000),
                 web.click(queries.backbutton)
             ]
         }
@@ -116,9 +161,18 @@ spec(function(){
             step("Tap login");
             step("Verify title");
             step("Verify flight summary");
-            step("Verify the list of options");
-            step("Go back");
+            step("Verify list items");
+            
             });
+        test("Open my trips and verify contents", function() {
+            step("launch application");
+            step("Tap login");
+            step("Open My Trips");
+            step("Open SEA to BOS trip");
+            step("Check In");
+            step("Boarding pass is OK")
+            step("Go back to home screen");
+        });
         // Point to the step repository object
     }, stepRepository);
 });
