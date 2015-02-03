@@ -121,7 +121,7 @@ spec(function(){
                     assert(response).equals("Mileage program progress");
                 }),
                 web.getValue(queries.settings, function(response){
-                    assert(response).equals("Settings");
+                    assert(response).equals("Settings"); 
                 })
             ]
         },
