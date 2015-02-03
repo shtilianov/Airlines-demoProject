@@ -9,14 +9,18 @@ spec(function(){
         totalmiles: {'id':'miles'},
         priority:{'id':'currentStatus'},
         mytripsButton:{'tagName':'a', 'index':0},
-        backbutton:{'id':'backButton'},
+        backbutton:{'className':'ui-btn-right ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a'},
         flightstatus:{'id':'flightStatusView'},
         bagtrack:{'id':'bagTrackView'},
         flightprogress:{'id':'programProgressView'},
         settings:{'id':'settingsView'},
-        bostontrip:{'tagName':'li', 'index' : 21},
+        bostontrip:{'xpath':'//*[@id="1111"]'},
         checkin:{'tagName':'a', 'index':10},
         passenger:{'id':'boardingpass-passenger'},
+		flight:{'id':'boardingpass-flight'},
+		departure:{'id':'boardingpass-depart'},
+		gate:{'id':'boardingpass-gate'},
+		seat:{'id':'boardingpass-seat'},
     };
 
     // Specify variables used by various steps here.
@@ -31,7 +35,7 @@ spec(function(){
     // and 'default' fileds to specify common action.
     var stepRepository = {
         "launch application": {
-            'ios': [
+            'ios': [ 
                 // ios app identifier
                 ios.launch('airlines://')
             ],
@@ -67,6 +71,7 @@ spec(function(){
                 
             ]
         },
+				// Take one additional screenshot for debugging purposes
                 "Take screenshot after you login":{
                 'default':[
                     web.screenshot()
@@ -94,11 +99,13 @@ spec(function(){
                 })
             ]
         },
+		// This will open my trips section and will return error if it's not existing/visible
         "Open My Trips":{
             'default':[
                 web.click(queries.mytripsButton)
             ]
         },
+		// Verify the UI of the main page
         "Verify list items":{
             'default':[
                 web.getValue(queries.mytripsButton, function(response){
@@ -120,27 +127,41 @@ spec(function(){
         },
         "Open SEA to BOS trip":{
             'default':[
-                web.click(queries.bostontrip)
+                web.click(queries.bostontrip),
+				web.wait(5000)
             ]
         },
         "Check In":{
             'default':[
-                web.click(queries.checkin)
+                web.click(queries.checkin),
+				web.wait(5000)
             ]
         },
-        "Boarding pass is OK": {
-            'default':[
-                 web.getTextContent(queries.passenger, function(response){
-                    assert(response).equals("Jaxon Daniels");
-                })
-            ]
-        },
+        // Return to the main menu
         "Go back to home screen": {
             'default': [
-                web.click(queries.backbutton)
+                web.click(queries.backbutton),
+				web.wait(5000)
                 
             ]
-        }
+        },
+		// Verify the boarding pass after 'check in'
+		"Verify boarding pass": {
+			'default': [
+					web.getTextContent(queries.passenger, function(response){
+                    assert(response).equals("Jaxon Daniels"); }),
+					web.getTextContent(queries.flight, function(response){
+                    assert(response).equals("111:SEA to BOS"); }),
+					web.getTextContent(queries.departure, function(response){
+                    assert(response).equals("5:00PM"); }),
+					web.getTextContent(queries.gate, function(response){
+                    assert(response).equals("C10"); }),
+					web.getTextContent(queries.seat, function(response){
+                    assert(response).equals("5A"); })
+					
+				]}
+				
+		
     };
 
     // Describe your suite here. 
@@ -169,6 +190,7 @@ spec(function(){
             step("Open My Trips");
             step("Open SEA to BOS trip");
             step("Check In");
+			step("Verify boarding pass");
             step("Go back to home screen");
         });
         // Point to the step repository object
